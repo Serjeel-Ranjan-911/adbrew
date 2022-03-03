@@ -1,3 +1,20 @@
+# Solution
+
+I have completed this task. To build and run docker containers use the following commands
+
+```sh
+    docker-compose build
+    docker-compose up -d
+```
+
+Then visit http://localhost:3000 to interact with app
+
+![docker images](./img/dockerimages.png)
+
+![docker containers running](./img/dockerps.png)
+
+![browser](./img/browser.png)
+
 # AdBrew Test!
 
 Hello! This test is designed to specifically test your Python, React and web development skills. The task is unconventional and has a slightly contrived setup on purpose and requires you to learn basic concepts of Docker on the fly. 

@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # connect to the database
-print(os.getenv('MONGO_URI'))
 try:
     if os.getenv('MONGO_URI') == None:
         mongo_uri = 'mongodb://mongo:27017' # connect to docker container
@@ -40,6 +39,9 @@ class TodoListView(APIView):
         try:
             # decode the incoming request data
             data = json.loads(request.body.decode("utf-8"))
+            # validate data
+            if data['taskName'] == None or data['taskName'] == '':
+                return JsonResponse({'error': 'Task name is required'}, status=status.HTTP_400_BAD_REQUEST)
             # insert the todo into mongodb
             db.todos.insert_one({"taskName": data['taskName']})
         except Exception as err:
