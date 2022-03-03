@@ -21,7 +21,7 @@ RUN apt-get install -y mongodb-org
 RUN apt-get install -y yarn
 
 # Install PIP
-RUN easy_install pip
+RUN apt-get install -y python3-pip
 
 
 ENV ENV_TYPE staging
@@ -29,10 +29,13 @@ ENV MONGO_HOST mongo
 ENV MONGO_PORT 27017
 ##########
 
-ENV PYTHONPATH=$PYTHONPATH:/src/
+# ENV PYTHONPATH=$PYTHONPATH:/src/
 
-# copy the dependencies file to the working directory
-COPY src/requirements.txt .
+COPY . /
 
-# install dependencies
+WORKDIR /src/rest
+RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+WORKDIR /src/app
+RUN yarn install

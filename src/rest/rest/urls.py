@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.urls import path, include
 from .views import TodoListView
+from django.contrib import admin
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('todos/', TodoListView.as_view(), name='signup'),
 ]
