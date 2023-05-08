@@ -23,11 +23,12 @@ services:
   mongo:
     build: .
     container_name: mongo
+    image: mongo
     restart: always
     ports:
       - "27017:27017"
     volumes:
-      - ${ADBREW_CODEBASE_PATH}/db/:/data/db
+      - ${ADBREW_CODEBASE_PATH}:/db
     command: /usr/bin/mongod --bind_ip 0.0.0.0
 
     
